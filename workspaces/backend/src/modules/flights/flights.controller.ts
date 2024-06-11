@@ -1,12 +1,12 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { FlightService } from './flight.service';
+import { FlightsService } from './flights.service';
 
 @Controller({
   path: '/flights',
   version: '1'
 })
 export class FlightsController {
-  constructor(private readonly flightsService: FlightService) {}
+  constructor(private readonly flightsService: FlightsService) {}
 
   @Get()
   getFlights(@Query() options: { skip?: number; take?: number }) {

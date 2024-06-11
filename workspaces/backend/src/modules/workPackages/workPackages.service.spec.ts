@@ -1,26 +1,28 @@
 import { Repository } from 'typeorm';
-import { Flight } from './flight.entity';
-import { FlightService } from './flight.service';
+import { WorkPackage } from './workPackage.entity';
+import { WorkPackagesService } from './workPackages.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 
-describe('FlightService', () => {
-  let service: FlightService;
-  let repository: Repository<Flight>;
+describe('WorkPackagesService', () => {
+  let service: WorkPackagesService;
+  let repository: Repository<WorkPackage>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        FlightService,
+        WorkPackagesService,
         {
-          provide: getRepositoryToken(Flight),
+          provide: getRepositoryToken(WorkPackage),
           useClass: Repository
         }
       ]
     }).compile();
 
-    service = module.get<FlightService>(FlightService);
-    repository = module.get<Repository<Flight>>(getRepositoryToken(Flight));
+    service = module.get<WorkPackagesService>(WorkPackagesService);
+    repository = module.get<Repository<WorkPackage>>(
+      getRepositoryToken(WorkPackage)
+    );
   });
 
   it('should be defined', () => {
@@ -29,7 +31,7 @@ describe('FlightService', () => {
 
   describe('find', () => {
     it('should return an array of flights', async () => {
-      const flights = [new Flight(), new Flight()];
+      const flights = [new WorkPackage(), new WorkPackage()];
       const count = flights.length;
 
       jest
@@ -43,7 +45,7 @@ describe('FlightService', () => {
     });
 
     it("should use the default values if options aren't provided", async () => {
-      const flights = [new Flight(), new Flight()];
+      const flights = [new WorkPackage(), new WorkPackage()];
       const count = flights.length;
 
       const sypFindAndCount = jest

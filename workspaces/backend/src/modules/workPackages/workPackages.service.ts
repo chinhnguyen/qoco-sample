@@ -1,22 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { Flight } from './flight.entity';
+import { WorkPackage } from './workPackage.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
-export class FlightService {
+export class WorkPackagesService {
   constructor(
-    @InjectRepository(Flight)
-    private readonly flightsRepository: Repository<Flight>
+    @InjectRepository(WorkPackage)
+    private readonly workPackageRepository: Repository<WorkPackage>
   ) {}
 
   async find(options: {
     skip?: number;
     take?: number;
-  }): Promise<{ data: Flight[]; count: number }> {
+  }): Promise<{ data: WorkPackage[]; count: number }> {
     const take = options.take || 10;
     const skip = options.skip || 0;
-    const [data, count] = await this.flightsRepository.findAndCount({
+    const [data, count] = await this.workPackageRepository.findAndCount({
       take,
       skip
     });
