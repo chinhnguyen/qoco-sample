@@ -1,4 +1,0 @@
-@backend_url= http://localhost:3000
-
-###
-GET {{backend_url}}/api/v1/flights HTTP/1.1
