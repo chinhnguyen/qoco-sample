@@ -1,0 +1,12 @@
+{
+  "name": "qoco-sample",
+  "workspaces": [
+    "workspaces/*"
+  ],
+  "version": "0.1.0",
+  "description": "Programming challenge for Qoco",
+  "main": "index.js",
+  "author": "Chinh Nguyen <nguyen.trungchinh@gmail.com>",
+  "license": "MIT",
+  "private": true
+}
