@@ -1,3 +1,6 @@
-import { Flight } from "@qoco-sample/shared";
+import { Flight, WorkPackage } from "@qoco-sample/shared";
 
-export type FlightsInfo = Record<string, { flights: Flight[] }>;
+export type FlightsInfo = Record<
+  string,
+  { flights: Flight[]; workPackages: WorkPackage[] }
+>;

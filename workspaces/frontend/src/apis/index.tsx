@@ -1,4 +1,9 @@
-import { GetFlightsOptions, GetFlightsResponse } from "@qoco-sample/shared";
+import {
+  GetFlightsOptions,
+  GetFlightsResponse,
+  GetWorkPackagesOptions,
+  GetWorkPackagesResponse,
+} from "@qoco-sample/shared";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 console.log(import.meta.env.VITE_API_URL);
@@ -15,7 +20,17 @@ export const restApi = createApi({
         params: options,
       }),
     }),
+
+    getWorkspaces: builder.query<
+      GetWorkPackagesResponse,
+      GetWorkPackagesOptions
+    >({
+      query: (options) => ({
+        url: `/work-packages`,
+        params: options,
+      }),
+    }),
   }),
 });
 
-export const { useGetFlightsQuery } = restApi;
+export const { useGetFlightsQuery, useGetWorkspacesQuery } = restApi;

@@ -1,5 +1,5 @@
 import { Box, Stack, useTheme } from "@mui/material";
-import { useGetFlightsQuery } from "../apis";
+import { useGetFlightsQuery, useGetWorkspacesQuery } from "../apis";
 import { createMDatesList } from "../utils/DateUtils";
 import { TimelineHeader } from "./TimelineHeader";
 import { FlightsHeader } from "./FlightsHeader";
@@ -22,6 +22,9 @@ export const FlightsTimeline = () => {
   const { data: flightsData } = useGetFlightsQuery({
     take: 1000,
   });
+  const { data: workPackagesData } = useGetWorkspacesQuery({
+    take: 1000,
+  });
 
   const mDates = useMemo(() => {
     if (!flightsData) return [];
@@ -34,16 +37,22 @@ export const FlightsTimeline = () => {
   const flightsInfo: FlightsInfo = useMemo(() => {
     const info: FlightsInfo = {};
 
-    if (!flightsData) return info;
-    return flightsData.data.reduce((acc, flight) => {
+    if (!flightsData || !workPackagesData) return info;
+    const res = flightsData.data.reduce((acc, flight) => {
       const registration = flight.registration;
       if (!info[registration]) {
-        info[registration] = { flights: [] };
+        info[registration] = { flights: [], workPackages: [] };
       }
       info[registration].flights.push(flight);
       return acc;
     }, info);
-  }, [flightsData]);
+    Object.keys(res).forEach((registration) => {
+      res[registration].workPackages = workPackagesData.data.filter(
+        (wp) => wp.registration === registration
+      );
+    });
+    return res;
+  }, [flightsData, workPackagesData]);
 
   return (
     <Stack

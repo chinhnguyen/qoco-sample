@@ -1,8 +1,3 @@
-export interface GetFlightsOptions {
-  skip?: number;
-  take?: number;
-}
-
 export interface Flight {
   flightId: number;
   airline: string;
@@ -23,7 +18,33 @@ export interface Flight {
   origArrStand?: string;
 }
 
+export interface GetFlightsOptions {
+  skip?: number;
+  take?: number;
+}
+
 export interface GetFlightsResponse {
   data: Flight[];
+  count: number;
+}
+
+export interface WorkPackage {
+  workPackageId: number;
+  name: string;
+  station: string;
+  status: string;
+  area: string;
+  registration: string;
+  startDateTime: string;
+  endDateTime: string;
+}
+
+export interface GetWorkPackagesOptions {
+  skip?: number;
+  take?: number;
+}
+
+export interface GetWorkPackagesResponse {
+  data: WorkPackage[];
   count: number;
 }
