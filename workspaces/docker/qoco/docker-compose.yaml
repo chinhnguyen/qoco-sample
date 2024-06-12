@@ -11,14 +11,14 @@ services:
     healthcheck:
       test:
         [
-          'CMD-SHELL',
-          'PGPASSWORD=$${DB_PASSWORD}',
-          'pg_isready -d $${DB_NAME} -U $${DB_USER}',
+          "CMD-SHELL",
+          "PGPASSWORD=$${DB_PASSWORD}",
+          "pg_isready -d $${DB_NAME} -U $${DB_USER}",
         ]
       interval: 5s
       timeout: 2s
       retries: 10
-  
+
   backend:
     container_name: qoco-backend
     ports:
@@ -33,5 +33,13 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_NAME: ${DB_NAME}
     depends_on:
-      postgres: 
+      postgres:
         condition: service_healthy
+
+  frontend:
+    container_name: qoco-frontend
+    ports:
+      - "3001:3001"
+    build:
+      context: ../../..
+      dockerfile: ./workspaces/frontend/Dockerfile
