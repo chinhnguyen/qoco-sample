@@ -4,7 +4,7 @@ import { FlightsTimeline } from "./components/FlightsTimeline";
 
 function App() {
   return (
-    <Container>
+    <Container sx={{ height: "100%" }}>
       <FlightsTimeline />
     </Container>
   );

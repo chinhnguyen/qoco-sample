@@ -9,12 +9,12 @@ export interface Flight {
   registration: string;
   aircraftType: string;
   flightNum: string;
-  schedDepTime?: Date;
-  schedArrTime?: Date;
-  actualDepTime?: Date;
-  actualArrTime?: Date;
-  estimatedDepTime?: Date;
-  estimatedArrTime?: Date;
+  schedDepTime?: string;
+  schedArrTime?: string;
+  actualDepTime?: string;
+  actualArrTime?: string;
+  estimatedDepTime?: string;
+  estimatedArrTime?: string;
   schedDepStation?: string;
   schedArrStation?: string;
   depStand?: string;
