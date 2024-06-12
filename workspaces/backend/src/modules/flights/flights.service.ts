@@ -18,7 +18,8 @@ export class FlightsService {
     const skip = options.skip || 0;
     const [data, count] = await this.flightsRepository.findAndCount({
       take,
-      skip
+      skip,
+      order: { schedDepTime: 'ASC' }
     });
     return { data, count };
   }

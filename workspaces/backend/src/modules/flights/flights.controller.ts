@@ -1,5 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { FlightsService } from './flights.service';
+import { GetFlightsOptions, GetFlightsResponse } from '@qoco-sample/shared';
 
 @Controller({
   path: '/flights',
@@ -9,7 +10,7 @@ export class FlightsController {
   constructor(private readonly flightsService: FlightsService) {}
 
   @Get()
-  getFlights(@Query() options: { skip?: number; take?: number }) {
+  getFlights(@Query() options: GetFlightsOptions): Promise<GetFlightsResponse> {
     return this.flightsService.find(options);
   }
 }

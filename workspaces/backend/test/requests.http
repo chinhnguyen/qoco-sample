@@ -1,4 +1,7 @@
-@backend_url= http://localhost:3000
+@backend_url= http://localhost:3000/api/v1
 
-###
-GET {{backend_url}}/api/v1/flights?skip=10&take=1 HTTP/1.1
+### GET flights
+GET {{backend_url}}/flights?take=1000 HTTP/1.1
+
+### GET work-packages
+GET {{backend_url}}/work-packages?skip=10&take=10 HTTP/1.1
